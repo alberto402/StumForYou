@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-12-2019 a las 18:35:10
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.10
+-- Tiempo de generación: 03-01-2020 a las 13:15:05
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `stum_for_you`
+-- Base de datos: `sgdi`
 --
 
 -- --------------------------------------------------------
@@ -63,6 +63,62 @@ CREATE TABLE `descuentos` (
   `id_dlc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dlcs`
+--
+
+CREATE TABLE `dlcs` (
+  `id_dlc` int(11) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `nombre` varchar(35) NOT NULL,
+  `tipo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `juegos`
+--
+
+CREATE TABLE `juegos` (
+  `id_juego` int(11) NOT NULL,
+  `clasificacion` enum('INDIE','AAA') NOT NULL,
+  `descripcion` text NOT NULL,
+  `precio` int(11) NOT NULL,
+  `genero` varchar(35) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `GenreIsIndie` tinyint(1) NOT NULL,
+  `genre_is_action` tinyint(1) NOT NULL,
+  `genre_is_adventure` tinyint(1) NOT NULL,
+  `genre_is_casual` tinyint(1) NOT NULL,
+  `genre_is_strategy` tinyint(1) NOT NULL,
+  `genre_is_RPG` tinyint(1) NOT NULL,
+  `genre_is_simulation` tinyint(1) NOT NULL,
+  `genre_is_early_access` tinyint(1) NOT NULL,
+  `genre_is_free_to_play` tinyint(1) NOT NULL,
+  `genre_is_sports` tinyint(1) NOT NULL,
+  `genre_is_racing` tinyint(1) NOT NULL,
+  `genre_is_massively_multiplayer` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedor`
+--
+
+CREATE TABLE `proveedor` (
+  `id_proveedor` int(11) NOT NULL,
+  `valoracion_proveedor` int(11) NOT NULL,
+  `cif` varchar(10) NOT NULL,
+  `pais` varchar(35) NOT NULL,
+  `nombre` varchar(35) NOT NULL,
+  `fecha_contrato` date NOT NULL,
+  `fecha-expiracion` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Índices para tablas volcadas
 --
@@ -86,6 +142,24 @@ ALTER TABLE `descuentos`
   ADD PRIMARY KEY (`id_descuento`);
 
 --
+-- Indices de la tabla `dlcs`
+--
+ALTER TABLE `dlcs`
+  ADD PRIMARY KEY (`id_dlc`);
+
+--
+-- Indices de la tabla `juegos`
+--
+ALTER TABLE `juegos`
+  ADD PRIMARY KEY (`id_juego`);
+
+--
+-- Indices de la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  ADD PRIMARY KEY (`id_proveedor`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -106,6 +180,24 @@ ALTER TABLE `claves_juegos`
 --
 ALTER TABLE `descuentos`
   MODIFY `id_descuento` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `dlcs`
+--
+ALTER TABLE `dlcs`
+  MODIFY `id_dlc` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `juegos`
+--
+ALTER TABLE `juegos`
+  MODIFY `id_juego` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
